@@ -1,15 +1,32 @@
-// const express = require('express');
-// const app = express();
+const express = require('express');
+const app = express();
 
-const app = require('express')();
+app.use(express.json());
 
 
 app.get("/", (req, res) => {
-    res.send({ data: "This is the root route" });
+    res.send(`
+        <h1>This is the root route</h1>
+        <h3>Welcome</h3>
+        
+        `);
 });
+
+console.log(__dirname)
+
+app.get("/welcomepage", (req, res) =>{
+    res.sendFile(__dirname + '/index.html');
+})
 
 app.get("/blablabla", (req, res) => {
     res.send({ data: "Bla bla bla is all I have to say" });
+});
+
+// assignment: create a route for /search that returns an empty JSON
+// task create a search where the query parameter is q that contains the search
+
+app.get("/search", (req, res) =>{
+    res.json({ data: `You searched for: ${req.query.q}`});
 });
 
 
@@ -21,6 +38,21 @@ app.get("/yourfavoritenumber/:favoriteNumber", functionReference);
 
 app.get("/favoritethings/:favoriteFlower/:favoriteAnimal", (req, res) => {
     res.send({ data: `Your favorite flower is ${req.params.favoriteFlower} and your favorite animal is ${req.params.favoriteAnimal}` });
+});
+
+app.post("/favoritepoliticians", (req, res) =>{
+
+    console.log(req.body);
+
+    res.send({ data: req.body});
+});
+
+// assignment create a new route and send some data to it through the body
+
+app.post("/favoritefish", (req, res) =>{
+    console.log(req.body);
+
+    res.send({ data: req.body});
 });
 
 app.listen(8080);

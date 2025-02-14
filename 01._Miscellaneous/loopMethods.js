@@ -33,7 +33,7 @@ console.log(adjustedSatellites);
 
 // assignment: make a list that reacts as many times as above with thumbs up
 
-const listOfReactions = ["thumbs up", "thumbs down"];
+const listOfReactions = ["thumbs down", "thumbs down", "thumbs down"];
 
 const updatedReactions = listOfReactions.map((reaction) => "thumbs up");
 
