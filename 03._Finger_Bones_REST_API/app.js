@@ -19,7 +19,7 @@ app.get("/fingerbones", (req, res) => {
         data: fingerBones
     });
 });
-
+// Get handler || Route Handler
 app.get("/fingerbones/:id", (req, res) => {
     const fingerBone = fingerBones.find((fingerBone) => fingerBone.id === +req.params.id);
     
