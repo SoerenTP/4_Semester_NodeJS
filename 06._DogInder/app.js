@@ -6,14 +6,16 @@ app.use(express.static("public"));
 
 import path from 'path';
 
+import { frontpagePage, matchesPage } from './util/pages.js';
+
 import { getMatches } from './util/matches.js';
 
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve('public/frontpage/frontpage.html'));
+    res.send(frontpagePage);
 });
 
 app.get("/matches", (req, res) => {
-    res.sendFile(path.resolve('public/matches/matches.html'));
+    res.send(matchesPage);
 });
 
 app.get("/api/matches", async (req, res) => {
