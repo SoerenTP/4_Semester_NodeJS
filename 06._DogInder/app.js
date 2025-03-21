@@ -4,24 +4,16 @@ const app = express();
 
 app.use(express.static("public"));
 
-import path from 'path';
+app.use(express.urlencoded({ extended: true }));
 
-import { frontpagePage, matchesPage } from './util/pages.js';
+import pagesRouter from './routers/pagesRouter.js';
+app.use(pagesRouter);
 
-import { getMatches } from './util/matches.js';
+import matchesRouter from './routers/matchesRouter.js';
+app.use(matchesRouter);
 
-app.get("/", (req, res) => {
-    res.send(frontpagePage);
-});
-
-app.get("/matches", (req, res) => {
-    res.send(matchesPage);
-});
-
-app.get("/api/matches", async (req, res) => {
-    const matches = await getMatches();
-    res.send({ data: matches });
-});
+import contactRouter from './routers/contactRouter.js';
+app.use(contactRouter);
 
 
 const PORT = Number(process.env.PORT) || 8080;
